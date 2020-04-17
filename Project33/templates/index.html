@@ -1,0 +1,85 @@
+
+<html>
+<body>
+<table align="center" border="0">
+    <tr><th>{% for x in messages %}{{ x }}{% endfor %}</th></tr>
+    <tr>
+        <th>
+            <table align="center" border="0">
+                <tr>
+                    <form action="{% url 'save_course' %}" method="post">
+                        {% csrf_token %}
+                    <th>
+                        {{ cform.as_p }}
+                    <button type="submit">Save</button>
+                    </th>
+                    </form>
+                    <th>
+
+                        <table align="center" border="2">
+                            <tr style="background-color: greenyellow">
+                                <th>ID</th>
+                                <th width="200">NAME</th>
+                                <th width="100">FEES</th>
+                            </tr>
+                            {% for x in call %}
+                                <tr>
+                                <th>{{ x.cid }}</th>
+                                <th width="200">{{ x.name }}</th>
+                                <th width="100">{{ x.fee }}</th>
+                            </tr>
+                            {% endfor %}
+                        </table>
+
+
+                    </th>
+                </tr>
+            </table>
+        </th>
+    </tr>
+    <tr>
+        <th>
+         <table align="center" border="0">
+                <tr>
+                    <form action="{% url 'save_student' %}" method="post">
+                        {% csrf_token %}
+                    <th>{{ sform.as_p }}
+                        <button type="submit">Save</button>
+                                        </th>
+                    </form>
+
+                    <th>
+
+                          <table align="center" border="2">
+                            <tr style="background-color: yellow">
+                                <th>ID</th>
+                                <th width="200">NAME</th>
+                                <th width="100">Contact</th>
+                                <th width="100">Joined Course's</th>
+                            </tr>
+                            {% for x in sall %}
+                                <tr>
+                                <th>{{ x.sid }}</th>
+                                <th width="200">{{ x.name }}</th>
+                                <th width="100">{{ x.contact }}</th>
+
+
+                                <th>
+                                    {% for y in x.courseid.all %}
+                                        {{ y }} <br>
+                                    {% endfor %}
+
+                                </th>
+
+                            </tr>
+                            {% endfor %}
+                        </table>
+
+                    </th>
+                </tr>
+            </table>
+        </th>
+    </tr>
+</table>
+</body>
+</html>
